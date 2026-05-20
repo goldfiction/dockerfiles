@@ -1,0 +1,13 @@
+#!/bin/sh
+cd /root
+. ./prompt
+cd /root/gqdn
+. ./alias
+cd /root/tedi
+. ./alias
+cd /root
+cd /home/dev
+cd project/workbench
+echo use these editors:
+echo mcedit, nano, vim, micro
+echo tome, tedi, gqdn

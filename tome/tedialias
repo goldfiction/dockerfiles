@@ -1,0 +1,7 @@
+function tedi(){
+export tedipath=/root/tedi
+export lastpath=$(pwd)
+cd $tedipath
+pnpm dev $lastpath/$1
+cd $lastpath
+}

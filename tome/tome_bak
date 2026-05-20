@@ -1,0 +1,11 @@
+#!/bin/sh
+docker rm -f tome
+docker run -d --name=tome \
+  -v /c/Users/vlgx/dev:/home/dev \
+  -p 8040:8080 \
+  --restart=unless-stopped \
+  goldfiction/repo:tome_editor_2026 \
+  tail -f /dev/null
+# node:22.22-alpine3.23 \
+echo use tome filename, tedi filename,
+echo micro filename or nano filename
