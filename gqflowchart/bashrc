@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /root
+cd /home/dev
+cd project/workbench
