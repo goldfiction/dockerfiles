@@ -1,0 +1,10 @@
+FROM node:20.20.2
+RUN apt-get update
+RUN apt-get install -y --force-yes git curl wget screen nano bash
+RUN cd /root; git clone https://github.com/goldfiction/gqblessedxterm.git; cd gqblessedxterm; npm install
+RUN cd /root
+COPY prompt /root/prompt
+COPY bashrc /root/.bashrc
+COPY entrypoint /entrypoint
+WORKDIR /root
+ENTRYPOINT ["/entrypoint"]

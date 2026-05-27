@@ -1,0 +1,90 @@
+project_name: mstream
+project_url: "https://mstream.io/"
+project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mstream-icon.png"
+project_blurb: |
+  [{{ project_name }}]({{ project_url }}) is a personal music streaming server. You can use mStream to stream your music from your home computer to any device, anywhere.  There are mobile apps available for both Android and iPhone.
+project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+project_categories: "Media Servers,Music"
+# supported architectures
+available_architectures:
+  - {arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - {arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
+# container parameters
+param_container_name: "{{ project_name }}"
+param_usage_include_vols: true
+param_volumes:
+  - {vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/data", desc: "mStream config"}
+  - {vol_path: "/music", vol_host_path: "/path/to/music", desc: "Music location"}
+param_usage_include_ports: true
+param_ports:
+  - {external_port: "3000", internal_port: "3000", port_desc: "The port for the mStream web interface"}
+# application setup block
+app_setup_block_enabled: true
+app_setup_block: |
+  Access the webui at `http://<your-ip>:3000`
+
+  Settings are adjusted through the web ui or via editing of `config.json`. For more information check out [{{ project_name|capitalize }}](https://github.com/IrosTheBeggar/mStream/blob/master/docs/json_config.md#json-config).
+
+  ## IMPORTANT NOTICE:
+  mStream v5 no longer accepts cli arguments for setting the user and password and requires the use of `config.json`. Therefore, the environment variables `USER`, `PASSWORD` and `USE_JSON` are deprecated.
+
+  v4's `config.json` is not compatible with v5. Existing `config.json` will be renamed to `config.json.v4-bak` for your reference and a new default `config.json` will be created upon upgrade from v4 to v5.
+# init diagram
+init_diagram: |
+  "mstream:latest": {
+    docker-mods
+    base {
+      fix-attr +\nlegacy cont-init
+    }
+    docker-mods -> base
+    legacy-services
+    custom services
+    init-services -> legacy-services
+    init-services -> custom services
+    custom services -> legacy-services
+    legacy-services -> ci-service-check
+    init-migrations -> init-adduser
+    init-os-end -> init-config
+    init-config -> init-config-end
+    init-crontab-config -> init-config-end
+    init-mstream-config -> init-config-end
+    init-config -> init-crontab-config
+    init-mods-end -> init-custom-files
+    init-adduser -> init-device-perms
+    base -> init-envfile
+    base -> init-migrations
+    init-config-end -> init-mods
+    init-mods-package-install -> init-mods-end
+    init-mods -> init-mods-package-install
+    init-config -> init-mstream-config
+    init-adduser -> init-os-end
+    init-device-perms -> init-os-end
+    init-envfile -> init-os-end
+    init-custom-files -> init-services
+    init-services -> svc-cron
+    svc-cron -> legacy-services
+    init-services -> svc-mstream
+    svc-mstream -> legacy-services
+  }
+  Base Images: {
+    "baseimage-alpine:3.23"
+  }
+  "mstream:latest" <- Base Images
+# changelog
+changelogs:
+  - {date: "24.04.26:", desc: "Make waveform data persistent."}
+  - {date: "20.04.26:", desc: "Fix perms on rust binaries."}
+  - {date: "07.04.26:", desc: "Add ffmpeg and yt-dlp."}
+  - {date: "06.04.26:", desc: "Rebase to Alpine 3.23."}
+  - {date: "27.06.24:", desc: "Rebase to Alpine 3.20."}
+  - {date: "12.12.23:", desc: "Rebase to Alpine 3.19, move binaries to /app."}
+  - {date: "05.07.23:", desc: "Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)"}
+  - {date: "13.02.23:", desc: "Rebase to Alpine 3.17, migrate to s6v3."}
+  - {date: "05.04.22:", desc: "Move `sync` folder to `/config`."}
+  - {date: "02.04.22:", desc: "Rebase to alpine 3.15. Fix ffmpeg download."}
+  - {date: "17.05.21:", desc: "Deprecating the env vars `USER`, `PASSWORD` and `USE_JSON` as mStream v5 requires the use of `config.json`."}
+  - {date: "23.01.21:", desc: "Rebasing to alpine 3.13."}
+  - {date: "01.06.20:", desc: "Rebasing to alpine 3.12."}
+  - {date: "19.12.19:", desc: "Rebasing to alpine 3.11."}
+  - {date: "28.06.19:", desc: "Rebasing to alpine 3.10."}
+  - {date: "18.05.19:", desc: "Inital Release"}
