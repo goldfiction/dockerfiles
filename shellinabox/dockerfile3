@@ -9,7 +9,7 @@ RUN apt update \
   && rm -rf /var/lib/apt/lists/*
 FROM debian:bookworm-slim
 RUN apt update \
-  && apt install -y adduser libc6 libpam0g libssl3 lsb-base zlib1g ssh-client \
+  && apt install -y libssl-dev libpam0g-dev zlib1g-dev ssh-client \
   && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /out /root/shellinabox
 COPY entrypoint /entrypoint
