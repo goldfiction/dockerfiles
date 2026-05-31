@@ -1,10 +1,13 @@
 #!/bin/sh
 cd /root
 . ./prompt
+. ./alias
 cd /home/dev
+cd vlgx/dev
 cd project/workbench
 echo welcome to nide
 echo to get started
 echo cd to your work folder
 echo type
-echo nide -H 0.0.0.0 -b ./
+echo nidestart
+echo then browse to http://ip:8123/

@@ -1,7 +1,7 @@
 #!/bin/sh
 docker rm -f sinopia
 docker run -d --name=sinopia \
-  -v /c/Users:/home/dev \
   -p 4873:4873 \
+  -v /c/Users/docker/sinopia/storage:/root/sinopia/storage \
   --restart=unless-stopped \
   sinopia

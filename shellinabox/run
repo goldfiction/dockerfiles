@@ -1,0 +1,6 @@
+#!/bin/sh
+docker rm -f shellinabox
+docker run -d --name=shellinabox \
+  -p 4200:4200 \
+  --restart=unless-stopped \
+  shellinabox

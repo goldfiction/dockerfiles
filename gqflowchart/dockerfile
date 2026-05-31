@@ -1,10 +1,15 @@
-FROM node:18.20.8
+FROM node:18.20.8 AS builder
 RUN apt-get update
-RUN apt-get install -y git curl wget screen nano bash build-essential
+RUN apt-get install -y git curl wget build-essential
 RUN cd /root; git clone https://github.com/goldfiction/gqflowchart.git; cd gqflowchart; npm install
+
+FROM node:18.20.8-slim
 EXPOSE 3443
+COPY --from=builder /root /root
+COPY --from=builder /usr/local /usr/local
 COPY prompt /root/prompt
 COPY bashrc /root/.bashrc
 COPY entrypoint /entrypoint
+RUN chmod a+x /entrypoint
 WORKDIR /root
-ENTRYPOINT ["tail","-f","/dev/null"]
+ENTRYPOINT ["/entrypoint"]

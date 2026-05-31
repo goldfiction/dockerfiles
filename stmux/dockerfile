@@ -1,13 +1,8 @@
-FROM node:20.20.2
-#COPY resolv.conf /etc/resolv.conf
-#COPY sources.list /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y --force-yes git curl wget screen nano bash
-#RUN npm config set user root -g
+FROM node:20.20.2 AS builder
 RUN npm install -g stmux
-#RUN rm -rf /usr/local/lib/node_modules/stmux/node_modules/yargs
-#RUN cd /usr/local/lib/node_modules/stmux; npm install yargs@13.3.2
-RUN cd /root
+
+FROM node:20.20.2-slim
+COPY --from=builder /usr/local /usr/local
 COPY prompt /root/prompt
 COPY bashrc /root/.bashrc
 COPY entrypoint /entrypoint

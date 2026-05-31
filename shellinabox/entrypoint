@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /root/shellinabox/usr/local/bin
+./shellinaboxd -s /:LOGIN
+tail -f /dev/null

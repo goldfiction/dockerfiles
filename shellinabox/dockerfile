@@ -1,0 +1,21 @@
+FROM debian:bookworm-slim AS builder
+RUN apt update \
+  && apt install -y git libssl-dev libpam0g-dev zlib1g-dev dh-autoreconf \
+  build-essential automake autoconf ssh nano sudo \
+  && cd /root; git clone https://github.com/shellinabox/shellinabox.git && cd shellinabox \
+  && autoreconf -i && ./configure LIBS="-lssl -lcrypto" && make \
+  && cd /root/shellinabox; make install DESTDIR=/out \
+  && apt-get purge -y --auto-remove make gcc build-essential \
+  && rm -rf /var/lib/apt/lists/*
+FROM debian:bookworm-slim
+ARG VER=3
+RUN apt update \
+  && apt install -y libssl-dev libpam0g-dev zlib1g-dev ssh-client nano sudo\
+  && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /out /root/shellinabox
+COPY entrypoint /entrypoint
+COPY resolv.conf /etc/resolv.conf
+COPY hosts /etc/hosts
+RUN chmod a+x /entrypoint
+WORKDIR /root
+ENTRYPOINT ["/entrypoint"]

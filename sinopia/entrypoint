@@ -1,2 +1,4 @@
 #!/bin/sh
+cd /root
+sinopia
 tail -f /dev/null

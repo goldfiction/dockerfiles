@@ -1,6 +1,6 @@
 #!/bin/sh
-cd /root
-. ./prompt
 cd /home/dev
+cd vlgx/dev
 cd project/workbench
 echo welcome to slap
+echo go to workfolder then type slap
