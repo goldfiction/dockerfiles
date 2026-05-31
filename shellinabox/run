@@ -1,6 +1,8 @@
 #!/bin/sh
 docker rm -f shellinabox
 docker run -d --name=shellinabox \
+  --add-host "ubvm:192.168.2.50" \
+  --add-host "aurora:192.168.2.82" \
   -p 4200:4200 \
   --restart=unless-stopped \
   shellinabox

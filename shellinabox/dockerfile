@@ -13,9 +13,11 @@ RUN apt update \
   && apt install -y libssl-dev libpam0g-dev zlib1g-dev ssh-client nano sudo\
   && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /out /root/shellinabox
+ARG VER=8
 COPY entrypoint /entrypoint
 COPY resolv.conf /etc/resolv.conf
 COPY hosts /etc/hosts
+COPY custom.css /root/custom.css
 RUN chmod a+x /entrypoint
 WORKDIR /root
 ENTRYPOINT ["/entrypoint"]

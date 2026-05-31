@@ -1,0 +1,3 @@
+#vt100 #scrollable { color: #0a0; background-color: #222; } /* Green on Black */
+#vt100 .bgAnsiDef { background-color:transparent; }
+#vt100 .ansiDef { color:#0a0; }

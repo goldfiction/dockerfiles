@@ -1,4 +1,5 @@
 #!/bin/sh
 cd /root/shellinabox/usr/local/bin
-./shellinaboxd -s /:LOGIN
+echo "root:password" | chpasswd
+./shellinaboxd -s /:LOGIN --no-beep --css /root/custom.css
 tail -f /dev/null
