@@ -1,0 +1,11 @@
+FROM node:20.20.2-slim
+RUN cd /root; npm install socks5 \
+  && apt update \
+  && apt install -y privoxy \
+  && rm -rf /var/lib/apt/lists/*
+COPY prompt /root/prompt
+COPY bashrc /root/.bashrc
+COPY config /etc/privoxy/config
+COPY entrypoint /entrypoint
+WORKDIR /root
+ENTRYPOINT ["/entrypoint"]

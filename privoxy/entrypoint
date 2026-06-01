@@ -1,0 +1,5 @@
+#!/bin/sh
+cd /root/node_modules/socks5
+node proxy.js &
+service privoxy start
+tail -f /dev/null

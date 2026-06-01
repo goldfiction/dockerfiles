@@ -1,0 +1,9 @@
+#!/bin/sh
+docker rm -f privoxy
+docker run -d --name=privoxy \
+  -e PRIVOKSY_USER=user \
+  -e PRIVOKSY_PASSWORD=password \
+  -p 8118:8118 \
+  -p 8888:8888 \
+  --restart=unless-stopped \
+  privoxy
