@@ -1,0 +1,8 @@
+#!/bin/sh
+docker rm -f xfce
+docker run -d --name=xfce \
+  --privileged \
+  -p 3395:3389 \
+  -v /c/Users:/home/host \
+  --restart=unless-stopped \
+  xfce

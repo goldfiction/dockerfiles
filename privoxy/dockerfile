@@ -3,6 +3,7 @@ RUN cd /root; npm install socks5 \
   && apt update \
   && apt install -y privoxy \
   && rm -rf /var/lib/apt/lists/*
+ARG Ver=2
 COPY prompt /root/prompt
 COPY bashrc /root/.bashrc
 COPY config /etc/privoxy/config

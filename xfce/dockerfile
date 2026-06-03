@@ -1,0 +1,11 @@
+FROM x11docker/xfce
+COPY bullseye /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y firefox xrdp sudo
+RUN 
+COPY prompt /root/prompt
+COPY bashrc /root/.bashrc
+COPY entrypoint /entrypoint
+RUN chmod a+x /entrypoint
+WORKDIR /root
+ENTRYPOINT ["/entrypoint"]

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+docker rm -f remote-desktop
+docker run -it \
+    --rm \
+    --hostname="$(hostname)" \
+    --publish="3392:3389/tcp" \
+    --name="remote-desktop" \
+    --shm-size="1g" \
+    docker-remote-desktop:latest /bin/bash

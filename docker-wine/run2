@@ -1,0 +1,6 @@
+docker rm -f docker-wine
+docker rm -f wine
+./docker-wine --local --rdp=start --rdp-port=3390
+#./docker-wine --local wine cmd.exe
+
+

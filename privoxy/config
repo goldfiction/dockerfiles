@@ -2844,4 +2844,4 @@ socket-timeout 300
 #hide-console
 #
 #
-forward-socks5t / 127.0.0.1:8888 .
+forward-socks5 / 127.0.0.1:8888 .

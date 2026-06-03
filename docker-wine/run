@@ -1,0 +1,10 @@
+docker rm -f docker-wine
+docker run -d \
+  --rm \
+  --name=docker-wine \
+  --hostname="$(hostname)" \
+  --env="RDP_SERVER=yes" \
+  --platform="linux/amd64" \
+  -p 3390:3389 \
+  docker-wine \
+  tail -f /dev/null
