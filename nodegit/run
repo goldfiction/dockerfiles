@@ -1,0 +1,7 @@
+#!/bin/sh
+docker rm -f nodegit
+docker run -d --name=nodegit \
+  -v /c/Users:/home/dev \
+  -p 7005:7005 \
+  --restart=unless-stopped \
+  nodegit

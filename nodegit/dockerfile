@@ -1,0 +1,9 @@
+FROM node:20.20.2-slim
+RUN cd /root; npm install @goldfiction/gqnodegit; apt-get update; apt-get install -y git \
+  && rm -rf /var/lib/apt/lists/*
+ARG Ver=2
+COPY prompt /root/prompt
+COPY bashrc /root/.bashrc
+COPY entrypoint /entrypoint
+WORKDIR /root
+ENTRYPOINT ["/entrypoint"]

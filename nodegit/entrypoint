@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /root/node_modules/@goldfiction/gqnodegit
+node index.js
+tail -f /dev/null
