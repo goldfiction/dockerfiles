@@ -1,0 +1,21 @@
+FROM ubuntu:latest
+
+# Install SSH, Mosh, and system dependencies
+RUN apt-get update && apt-get install -y \
+    openssh-server \
+    mosh \
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Force standard UTF-8 environment variables required by Mosh
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+# Configure SSH daemon settings
+RUN mkdir /var/run/sshd
+EXPOSE 22
+
+# Expose a default pool of UDP ports for active Mosh clients
+EXPOSE 60001-60010/udp
+
+CMD ["/usr/sbin/sshd", "-D"]

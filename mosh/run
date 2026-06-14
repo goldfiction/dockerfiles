@@ -1,0 +1,7 @@
+#!/bin/sh
+docker rm -f mosh
+docker run -d \
+  --name mosh \
+  -p 2222:22 \
+  -p 60001-60010:60001-60010/udp \
+  mosh:latest
