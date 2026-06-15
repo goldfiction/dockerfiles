@@ -1,0 +1,13 @@
+#!/bin/sh
+docker rm -f opera
+docker volume create opera
+docker run -d \
+  --name=opera \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -p 3500:3000 \
+  -v opera:/config \
+  --shm-size="2gb" \
+  --restart unless-stopped \
+  opera:latest

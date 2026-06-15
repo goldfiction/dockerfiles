@@ -1,0 +1,23 @@
+FROM ubuntu:24.04
+# Install basic dependencies and graphics libraries
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    ca-certificates \
+    libnss3 \
+    libatk1.0-0 \
+    libgbm1 \
+    libasound2t64 \
+    && rm -rf /var/lib/apt/lists/*
+# Add the official Opera package repository
+RUN wget -qO- https://opera.com | gpg --dearmor -o /usr/share/keyrings/opera-browser.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/opera-browser.gpg] https://opera.com stable non-free" > /etc/apt/sources.list.d/opera.list
+# Update and install the specific Opera GX package
+RUN apt-get update && apt-get install -y \
+    opera-gx \
+    && rm -rf /var/lib/apt/lists/*
+# Set up environment for X11 UI forwarding
+ENV DISPLAY=:0
+COPY bashrc /root/.bashrc
+COPY prompt /root/prompt
+CMD ["opera-gx", "--no-sandbox"]
