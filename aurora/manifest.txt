@@ -1,4 +1,0 @@
-sinopia:
-admin//password
-
-

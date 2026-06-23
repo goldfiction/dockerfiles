@@ -1,9 +1,0 @@
-#!/bin/sh
-docker rm -f wordpress
-docker run -d \
-  --name wordpress \
-  -p 8060:80 \
-  -v /c/Users/docker/wordpress/html:/var/www/html \
-  wordpress:6.9.4-fpm-alpine
-#  tail -f /dev/null
-#  wordpress:6-php8.5-fpm-alpine

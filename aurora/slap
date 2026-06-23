@@ -1,9 +1,0 @@
-#!/bin/sh
-docker rm -f slap
-docker run -d --name=slap \
-  -e SLAP_JWT_SECRET=secret \
-  -v /c/Users/vlgx/dev:/home/dev \
-  -p 8040:8080 \
-  --restart=unless-stopped \
-  ryukzak/slap \
-  tail -f /dev/null

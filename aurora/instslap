@@ -1,4 +1,0 @@
-apk update
-apk add nodejs npm python3 make g++
-npm install -g slap@latest
-

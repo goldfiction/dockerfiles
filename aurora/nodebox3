@@ -1,8 +1,0 @@
-docker rm -f nodebox
-docker run -d --name=nodebox \
-  -v=/c/Users/vlgx/dev:/home/dev \
-  -p 3100:3000 \
-  --privileged \
-  node:22.7.0 \
-  tail -f /dev/null
-

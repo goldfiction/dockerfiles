@@ -1,7 +1,0 @@
-#!/bin/sh
-docker rm -f dozzle
-docker run -d --name=dozzle \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v /srv/dozzle:/data \
-  -p 8080:8080 \
-  amir20/dozzle:latest

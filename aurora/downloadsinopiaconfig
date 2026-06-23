@@ -1,1 +1,0 @@
-curl -L https://raw.githubusercontent.com/rlidwka/sinopia/master/conf/default.yaml -o config.yaml

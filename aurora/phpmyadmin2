@@ -1,6 +1,0 @@
-#!/bin/sh
-docker rm -f phpmyadmin
-docker run --name phpmyadmin -d \
-  --link mysql:db \
-  -p 8090:80 \
-  phpmyadmin

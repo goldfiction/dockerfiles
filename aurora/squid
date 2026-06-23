@@ -1,6 +1,0 @@
-#!/bin/sh
-docker rm -f squid
-docker run --name squid \
-    -p 3128:3128 \
-    --restart=unless-stopped \
-    ubuntu/squid:6.6-24.04_beta

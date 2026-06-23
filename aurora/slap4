@@ -1,8 +1,0 @@
-#!/bin/sh
-docker rm -f slap
-docker run -d --name=slap \
-  -v /c/Users/vlgx/dev:/home/dev \
-  -p 8040:8080 \
-  --restart=unless-stopped \
-  node:22.22-alpine3.23 \
-  tail -f /dev/null

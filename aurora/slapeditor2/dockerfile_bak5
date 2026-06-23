@@ -1,9 +1,0 @@
-FROM node:10-alpine
-# Install build dependencies required for older slap versions
-RUN apk add --no-cache make gcc g++ python3 linux-headers
-# Install the specific older version of slap
-RUN npm install -g slap@0.0.55
-# Set the working directory for your project files
-WORKDIR /workspace
-# Run the slap editor
-ENTRYPOINT ["slap"]
