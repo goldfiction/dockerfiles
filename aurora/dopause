@@ -1,0 +1,6 @@
+docker pause mstream
+docker pause blinko
+docker pause blinko-db
+docker pause calibre-web
+docker pause jellyfin
+

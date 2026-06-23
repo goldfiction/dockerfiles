@@ -1,0 +1,14 @@
+#!/bin/sh
+docker rm -f rdesktop
+docker volume create rdesktop
+docker run -d \
+  --name=rdesktop \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -p 13389:3389 \
+  -v rdesktop:/config \
+  --security-opt seccomp=unconfined \
+  --shm-size="1gb" \
+  --restart unless-stopped \
+  lscr.io/linuxserver/rdesktop:ubuntu-xfce

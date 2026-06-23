@@ -1,0 +1,2 @@
+systemctl disable systemd-resolved
+systemctl mask systemd-resolved

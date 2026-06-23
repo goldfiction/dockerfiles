@@ -1,0 +1,10 @@
+#!/bin/sh
+docker rm -f freeplane
+docker run \
+  --name=freeplane \
+  --detach=true \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v /c/Users/vlgx/dev:/home/dev \
+  --device /dev/snd \
+  wkat/docker-freeplane

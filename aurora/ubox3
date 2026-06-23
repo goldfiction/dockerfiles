@@ -1,0 +1,10 @@
+docker rm -f kasm
+docker run -d \
+  --name=kasm \
+  --shm-size=512m \
+  -p 8090:6901 \
+  -e VNC_PW=password \
+  --restart unless-stopped \
+  kasmweb/desktop:1.16.0
+
+

@@ -1,0 +1,14 @@
+# Use an official Node.js runtime as the base
+FROM node:20-alpine
+
+# Install build tools necessary for some npm packages (optional but recommended)
+RUN apk add --no-cache make gcc g++ python3
+
+# Install the slap text editor globally via npm
+RUN npm install -g slap@latest
+
+# Set the working directory
+WORKDIR /app
+
+# Command to open slap when the container starts
+CMD ["slap"]

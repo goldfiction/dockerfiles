@@ -1,0 +1,14 @@
+#!/bin/sh
+docker rm -f firefox
+docker run -d \
+  --name=firefox \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -e FIREFOX_CLI=https://www.linuxserver.io/ `#optional` \
+  -p 3100:3000 \
+  -p 3101:3001 \
+  -v /c/Users/docker/firefox/config:/config \
+  --shm-size="1gb" \
+  --restart unless-stopped \
+  lscr.io/linuxserver/firefox:latest

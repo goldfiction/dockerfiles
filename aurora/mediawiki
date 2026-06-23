@@ -1,0 +1,6 @@
+docker rm -f mediawiki
+docker run -d --name mediawiki \
+  -p 8080:80 \
+  --privileged \
+  --restart unless-stopped \
+  mediawiki:lts

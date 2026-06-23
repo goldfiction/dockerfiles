@@ -1,0 +1,10 @@
+docker rm -f sinopia
+docker run -d \
+  --name sinopia \
+  -p 4873:4873 \
+  goldfiction/repo:sinopia202603 \
+  /opt/sinopia/start.sh
+#  tail -f /dev/null
+#  /opt/sinopia/start.sh
+#  tail -f /dev/null
+#  /opt/sinopia/start.sh

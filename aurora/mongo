@@ -1,0 +1,7 @@
+#!/bin/sh
+docker rm -f mongo
+docker run --name mongo -d \
+  --memory=1024m \
+  -p 27017:27017 \
+  -v /srv/.mongo/data/db:/data/db \
+  mongo:3.2-jessie

@@ -1,0 +1,2 @@
+docker cp resolv.conf pihole:/etc/resolv.conf
+docker cp hosts pihole:/etc/hosts

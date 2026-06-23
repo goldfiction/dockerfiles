@@ -1,0 +1,5 @@
+docker rm -f sinopia
+docker run -d \
+  --name sinopia \
+  -p 4873:4873 \
+  goldfiction/repo:sinopia2026

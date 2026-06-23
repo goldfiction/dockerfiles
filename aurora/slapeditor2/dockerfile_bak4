@@ -1,0 +1,16 @@
+FROM node:alpine
+
+# Install build dependencies required to compile native Node.js modules
+RUN apk add --no-cache \
+    build-base \
+    python3 \
+    linux-headers
+
+# Install slap globally and clean up cache to minimize image size
+RUN npm install -g slap \
+    && npm cache clean --force
+
+# Set working directory and default command
+WORKDIR /workspace
+CMD ["slap"]
+

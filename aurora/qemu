@@ -1,0 +1,7 @@
+#!/bin/sh
+docker rm -f qemu
+docker run --name=qemu --rm -it \
+  --privileged \
+  linuxserver/qemu-static \
+  --reset \
+  -p yes

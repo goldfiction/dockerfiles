@@ -1,0 +1,2 @@
+#!/bin/sh
+dispatch start -H 0.0.0.0 -p 18085 192.168.2.82

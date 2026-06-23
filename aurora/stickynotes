@@ -1,0 +1,12 @@
+docker rm -f sticky
+docker run -d \
+  --name=sticky \
+  --shm-size=512m \
+  -p 8060:8060 \
+  -v /c/Users/vlgx/dev:/home/host \
+  --restart unless-stopped \
+  --privileged \
+  goldfiction/repo:sticky \
+  tail -f /dev/null
+
+

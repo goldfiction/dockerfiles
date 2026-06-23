@@ -1,0 +1,8 @@
+#!/bin/sh
+#export DISPLAY=192.168.2.82:1.0
+docker rm -f openbox
+docker run -d --name=openbox \
+  -v /c/Users/vlgx/dev:/home/dev \
+  -e DISPLAY=192.168.2.82:1.0 \
+  --privileged \
+  x11docker/openbox

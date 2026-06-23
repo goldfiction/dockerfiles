@@ -1,0 +1,8 @@
+docker rm -f ubox
+docker run -d --name=ubox \
+  --restart=unless-stopped \
+  -v /c/Users/vlgx/dev:/home/dev \
+  --privileged \
+  ubuntu:bionic \
+  tail -f /dev/null
+

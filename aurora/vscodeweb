@@ -1,0 +1,14 @@
+docker rm -f code-server
+docker run -d \
+  --name=code-server \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -e PASSWORD=password \
+  -e DEFAULT_WORKSPACE=/config/project/workbench \
+  -p 8443:8443 \
+  -v /c/Users/vlgx/dev/code-server/config:/config \
+  -v /c/Users/vlgx/dev:/home/dev \
+  --restart unless-stopped \
+  --privileged \
+  lscr.io/linuxserver/code-server:version-v3.10.2

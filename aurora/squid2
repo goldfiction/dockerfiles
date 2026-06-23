@@ -1,0 +1,6 @@
+#!/bin/sh
+docker rm -f squid
+docker run --name squid -d \
+    -p 3128:3128 \
+    --restart=unless-stopped \
+    squid:disk

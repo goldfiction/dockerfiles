@@ -1,0 +1,10 @@
+
+#!/bin/sh
+docker rm -f kasmubuntu
+docker run --name=kasmubuntu --rm -d \
+  --shm-size=512m \
+  -p 6901:6901 \
+  -e VNC_PW=password \
+  -v /c/Users:/home/host \
+  --security-opt seccomp=unconfined \
+  kasmweb/ubuntu-noble-desktop:1.18.0

@@ -1,0 +1,16 @@
+#!/bin/sh
+docker rm -f kasmubuntu
+docker run --name=kasmubuntu --rm -d \
+  --shm-size=512m \
+  -p 6903:6901 \
+  -p 3396:3389 \
+  -e VNC_PW=password \
+  -v /c/Users:/home/host \
+  --privileged \
+  --security-opt seccomp=unconfined \
+  --device /dev/snd:/dev/snd \
+  kasm
+
+# use kasm_user//password
+# root//password
+# kasm-user//password

@@ -1,0 +1,12 @@
+#!/bin/sh
+docker rm -f openvscode
+docker run -d \
+  --name=openvscode \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -e SUDO_PASSWORD=password \
+  -p 8453:3000 \
+  -v /c/Users/docker/openvscode/config:/config \
+  --restart unless-stopped \
+  lscr.io/linuxserver/openvscode-server:latest
