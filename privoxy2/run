@@ -1,0 +1,11 @@
+#!/bin/sh
+docker rm -f privoxy
+docker run -d --name=privoxy \
+  -e PRIVOKSY_USER=user \
+  -e PRIVOKSY_PASSWORD=password \
+  --add-host "ubvm:192.168.2.50" \
+  --add-host "aurora:192.168.2.82" \
+  -p 8118:8118 \
+  -p 8888:8888 \
+  --restart=unless-stopped \
+  privoxy

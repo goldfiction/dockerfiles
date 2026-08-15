@@ -1,0 +1,6 @@
+function nidestart(){
+  export lastcd=$(pwd)
+  nide init
+  nide -H 0.0.0.0 -b ./
+  cd $lastcd
+}

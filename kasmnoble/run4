@@ -1,0 +1,17 @@
+#!/bin/sh
+#./build
+docker rm -f kasmnoble
+docker run --name=kasmnoble --rm -d \
+  --shm-size=512m \
+  -p 6910:6901 \
+  -p 3310:3389 \
+  -e VNC_PW=password \
+  -v /c/Users:/home/host \
+  --privileged \
+  --security-opt seccomp=unconfined \
+  kasmnoble:v4
+
+docker ps | grep kasmnoble
+echo use kasm_user//password
+echo root//password
+echo kasm-user//password

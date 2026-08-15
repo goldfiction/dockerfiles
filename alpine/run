@@ -1,0 +1,8 @@
+#!/bin/sh
+docker rm -f alpinebox
+docker run -d --name=alpinebox \
+  -v /c/Users/vlgx/dev:/home/dev \
+  -p 7089:3389 \
+  --restart=unless-stopped \
+  --security-opt seccomp=unconfined \
+  alpinebox

@@ -1,2 +1,2 @@
 #!/bin/sh
-docker build -t kasmnoble ./
+docker build -t kasmnoble -f Dockerfile .

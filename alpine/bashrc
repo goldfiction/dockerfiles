@@ -1,0 +1,5 @@
+#!/bin/sh
+cd ~
+. ./prompt
+clear
+echo please use tilix for best terminal experience

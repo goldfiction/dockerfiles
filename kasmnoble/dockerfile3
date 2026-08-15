@@ -1,0 +1,28 @@
+FROM kasmweb/ubuntu-noble-desktop:1.18.0
+USER root
+RUN apt-get update; apt-get install -y curl wget git nano vim screen mc
+
+# Install dependencies and tools
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    software-properties-common \
+    libgtk-3-0 \
+    libcanberra-gtk-module \
+    && rm -rf /var/lib/apt/lists/*
+
+# Add Opera's GPG key and APT repository
+RUN wget -qO- https://deb.opera.com/archive.key | gpg --dearmor > /usr/share/keyrings/opera-archive-keyring.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/opera-archive-keyring.gpg] https://deb.opera.com/opera-gx-stable/ stable non-free" > /etc/apt/sources.list.d/opera-gx.list
+
+# Update package list and install Opera GX
+RUN apt-get update && apt-get install -y opera-gx-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY prompt /root/prompt
+COPY bashrc /root/.bashrc
+COPY entrypoint /entrypoint
+RUN chmod a+x /entrypoint
+WORKDIR /root
+USER kasm-default-user
+#ENTRYPOINT ["/entrypoint"]

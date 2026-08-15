@@ -1,0 +1,11 @@
+FROM alpine:3.24
+RUN cd /root; apk add wget curl nano openbox xrdp xorgxrdp xorg-server
+RUN apk add --no-cache openrc; mkdir /run/openrc; touch /run/openrc/softlevel
+ARG Ver=5
+COPY sesman.ini /etc/xrdp/sesman.ini
+COPY prompt /root/prompt
+COPY bashrc /root/.bashrc
+COPY entrypoint /entrypoint
+RUN adduser -D user && echo "user:password" | chpasswd
+WORKDIR /root
+ENTRYPOINT ["/entrypoint"]

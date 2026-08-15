@@ -1,0 +1,40 @@
+FROM alpine:3.24
+
+# Install minimal Xorg, XRDP, Openbox, and a terminal
+RUN apk add --no-cache \
+    xrdp \
+    xorgxrdp \
+    xorg-server \
+    openbox \
+    shadow
+
+# Create a non-root user (XRDP does not allow root logins)
+RUN adduser -D -s /bin/sh user && \
+    echo "user:password" | chpasswd
+
+# Generate XRDP security keys
+RUN xrdp-keygen xrdp auto
+
+# Configure Openbox session for the user
+RUN mkdir -p /home/user/.config/openbox && \
+    echo "exec openbox-session" > /home/user/.xinitrc && \
+    chown -R user:user /home/user
+
+RUN apk update
+RUN apk add fontconfig
+RUN apk add ttf-freefont font-noto
+RUN fc-cache -f
+RUN apk add xterm openssh-client
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN apk update
+RUN apk add guake@testing py3-gobject3 vte3 keybinder3
+
+EXPOSE 3389
+
+ARG Ver=5
+#COPY sesman.ini /etc/xrdp/sesman.ini
+COPY prompt /root/prompt
+COPY bashrc /root/.bashrc
+COPY entrypoint /entrypoint
+
+CMD ["sh", "-c", "xrdp-sesman && xrdp --nodaemon"]
